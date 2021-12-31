@@ -32,7 +32,14 @@ export default class App extends Component {
       tabGame.push(item)
       tabResult.push({ id: index })
     }
-    this.setState({ tabValuesGame: tabGame, tabValuesResult: tabResult })
+    this.setState({ 
+      tabValuesGame: tabGame, 
+      tabValuesResult: tabResult, 
+      valueSelect: '',
+      testSelect: '',
+      winGame: false,
+      testWin: [false, false, false, false, false, false, false, false, false]
+    })
   }
 
   ClickNumber(item) {
@@ -106,7 +113,7 @@ export default class App extends Component {
     for (let index = 0; index < tabParcour.length; index++) {
       if (valTabResult[i].value == 9) {
         console.log('ss999');
-        if (valTabResult[i].value - 1 == valTabResult[tabParcour[index]].value) {
+        if (valTabResult[i].value - 1 == valTabResult[tabParcour[index]].value ) {
           let testWintemp = this.state.testWin;
           testWintemp[i] = true;
           this.setState({ testWin: testWintemp });
@@ -124,7 +131,7 @@ export default class App extends Component {
     }
     // console.log(this.state.testWin);
 
-  } 
+  }
   render() {
     let numberGameComponent = (item) => {
       return <div className=' btn text-center mb-2'
