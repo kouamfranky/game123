@@ -86,13 +86,15 @@ export default class App extends Component {
         tabParcour = [4, 5, 7]
         this.testResultFinal(8, tabParcour);
 
+
+
         let winGame = this.state.testWin
         for (let index = 0; index < winGame.length; index++) {
           if (winGame[index] == false) {
             this.setState({ winGame: false })
             break
           } else this.setState({ winGame: true })
-        } 
+        }
 
         console.log(this.state.testWin);
 
@@ -102,20 +104,27 @@ export default class App extends Component {
   testResultFinal(i, tabParcour) {
     let valTabResult = this.state.tabValuesResult
     for (let index = 0; index < tabParcour.length; index++) {
-      if ((valTabResult[i].value + 1 == valTabResult[tabParcour[index]].value ) && (i!=0 || i!=8) ) {
-        let testWintemp = this.state.testWin;
-        testWintemp[i] = true;
-        this.setState({ testWin: testWintemp });
-      } 
-      if ((valTabResult[i].value + 1 == valTabResult[tabParcour[index]].value || valTabResult[i].value - 1 == valTabResult[tabParcour[index]].value ) && (i==0 || i==8)) {
-        let testWintemp = this.state.testWin;
-        testWintemp[i] = true;
-        this.setState({ testWin: testWintemp });
-      } 
-    }
-   // console.log(this.state.testWin);
+      if (valTabResult[i].value == 9) {
+        console.log('ss999');
+        if (valTabResult[i].value - 1 == valTabResult[tabParcour[index]].value) {
+          let testWintemp = this.state.testWin;
+          testWintemp[i] = true;
+          this.setState({ testWin: testWintemp });
+        }
+      } else {
+        if ((valTabResult[i].value + 1 == valTabResult[tabParcour[index]].value) && (valTabResult[i].value < 9)) {
+          let testWintemp = this.state.testWin;
+          testWintemp[i] = true;
+          this.setState({ testWin: testWintemp });
+        }
+      }
 
-  }
+
+
+    }
+    // console.log(this.state.testWin);
+
+  } 
   render() {
     let numberGameComponent = (item) => {
       return <div className=' btn text-center mb-2'
@@ -167,12 +176,12 @@ export default class App extends Component {
               {this.state.tabValuesGame.length} moves left.
             </div>
             :
-            (this.state.winGame)? 
-            <div className='col-md-6 text-center col-xs-12 col-sm-12'>
-              <img src='win.png' style={{ width: '160px', height: '220px' }} alt="win game" /><br />
-              <span className='display-2'> You win</span>
-            </div>
-            : <span className='col-md-6 col-xs-12 col-sm-12'>Game finished, You lose</span>
+            (this.state.winGame) ?
+              <div className='col-md-6 text-center col-xs-12 col-sm-12'>
+                <img src='win.png' style={{ width: '160px', height: '220px' }} alt="win game" /><br />
+                <span className='display-2'> You win</span>
+              </div>
+              : <span className='col-md-6 col-xs-12 col-sm-12'>Game finished, You lose</span>
           }
           <div className='col-md-5 col-12 col-sm-12  row '>
             {
