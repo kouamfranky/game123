@@ -92,7 +92,7 @@ export default class App extends Component {
             this.setState({ winGame: false })
             break
           } else this.setState({ winGame: true })
-        }
+        } 
 
         console.log(this.state.testWin);
 
@@ -102,12 +102,19 @@ export default class App extends Component {
   testResultFinal(i, tabParcour) {
     let valTabResult = this.state.tabValuesResult
     for (let index = 0; index < tabParcour.length; index++) {
-      if (valTabResult[i].value + 1 == valTabResult[tabParcour[index]].value || valTabResult[i].value - 1 == valTabResult[tabParcour[index]].value) {
+      if ((valTabResult[i].value + 1 == valTabResult[tabParcour[index]].value ) && (i!=0 || i!=8) ) {
         let testWintemp = this.state.testWin;
         testWintemp[i] = true;
         this.setState({ testWin: testWintemp });
-      }
+      } 
+      if ((valTabResult[i].value + 1 == valTabResult[tabParcour[index]].value || valTabResult[i].value - 1 == valTabResult[tabParcour[index]].value ) && (i==0 || i==8)) {
+        let testWintemp = this.state.testWin;
+        testWintemp[i] = true;
+        this.setState({ testWin: testWintemp });
+      } 
     }
+   // console.log(this.state.testWin);
+
   }
   render() {
     let numberGameComponent = (item) => {
