@@ -6,6 +6,11 @@
   height: 40vmin;
   pointer-events: none;
 }
+.result:hover {
+  color: rgb(97, 192, 189);
+  border-width: 10px;
+  border-color: rgb(97, 192, 189);
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
